@@ -18,7 +18,20 @@
 
 var counter = 0
 
+
+var counterChooseClass = function() {
+   if (counter >= 10) {
+        console.log("counter > 10")
+       $(".counter").addClass("alert-danger")
+    } else {
+        $(".counter").removeClass("alert alert-danger")
+    }
+}
+
 var counterUpdate = function() {
+
+
+    counterChooseClass()
     $(".counter").text(counter)
     console.log("update")
  }
@@ -31,10 +44,6 @@ var counterDecrement = function() {
 }
 
 var counterIncrement = function() {
-    if (counter > 10) {
-        console.log("counter > 10")
-    }
-
     console.log("increment", counter)
     counter++
     counterUpdate()
