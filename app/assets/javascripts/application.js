@@ -19,10 +19,16 @@
 var counterLog = []
 
 window.onload = function() {
+    counter = localStorage.getItem('counter')
+    if (counter == null) {
+        counter = 0
+    }
     counterLog = JSON.parse( localStorage.getItem('counterLog') )
+    counterUpdate()
 }
 
 window.onbeforeunload = function() {
+    localStorage.setItem('counter', counter)
     localStorage.setItem('counterLog', JSON.stringify(counterLog))
 }
 
@@ -30,20 +36,10 @@ var logClear = function() {
     counterLog = []
 }
 
-var logSave = function() {
-    localStorage.setItem('counterLog', JSON.stringify(counterLog))
-}
-
-var logLoad = function() {
-    counterLog = localStorage['counterLog']
-}
-
-
 var counter = 0
 
 var counterChooseClass = function() {
    if (counter >= 10) {
-        console.log("counter > 10")
        $(".counter").addClass("alert-danger")
     } else {
         $(".counter").removeClass("alert alert-danger")
@@ -53,18 +49,14 @@ var counterChooseClass = function() {
 var counterUpdate = function() {
     counterChooseClass()
     $(".counter").text(counter)
-    console.log("update")
  }
 
 var counterDecrement = function() {
-    console.log(this)
-    console.log("decrement", counter)
     counter--
     counterUpdate()
 }
 
 var counterIncrement = function() {
-    console.log("increment", counter)
     counter++
     counterUpdate()
 }
@@ -75,9 +67,13 @@ var counterReset = function() {
     counterUpdate()
 }
 
-$(document).ready(function() {
-    counter = $(".counter-start").data("counter-start")
+var counterDefaultValue = function() {
+    counter = $(".counter-default").data("counter-default")
     counterUpdate()
+}
+
+$(document).ready(function() {
+    $(".counter-default").click(counterDefaultValue)
     $(".counter-reset").click(counterReset)
     $(".counter-minus").click(counterDecrement)
     $(".counter-plus").click(counterIncrement)
