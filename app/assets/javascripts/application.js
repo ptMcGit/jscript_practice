@@ -16,8 +16,13 @@
 //= require turbolinks
 //= require_tree .
 
-var counter = 0
+var counterLog = []
 
+var logClear = function() {
+    counterLog = []
+}
+
+var counter = 0
 
 var counterChooseClass = function() {
    if (counter >= 10) {
@@ -29,8 +34,6 @@ var counterChooseClass = function() {
 }
 
 var counterUpdate = function() {
-
-
     counterChooseClass()
     $(".counter").text(counter)
     console.log("update")
@@ -50,7 +53,7 @@ var counterIncrement = function() {
 }
 
 var counterReset = function() {
-    console.log("reset", counter)
+    counterLog.push("reset from ", counter, " at ", Date())
     counter = 0
     counterUpdate()
 }
@@ -60,4 +63,5 @@ $(document).ready(function() {
     $(".counter-reset").click(counterReset)
     $(".counter-minus").click(counterDecrement)
     $(".counter-plus").click(counterIncrement)
+    $(".log-clear").click(logClear)
 })
