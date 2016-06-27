@@ -15,3 +15,11 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+var myFunction = function(arg) {
+    alert(arg)
+}
+
+$(document).ready(function() {
+     myFunction("something")
+})
