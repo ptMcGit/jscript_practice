@@ -70,12 +70,13 @@ var counterIncrement = function() {
 }
 
 var counterReset = function() {
-    counterLog.push("reset from ", counter, " at ", Date())
+    counterLog.unshift("reset from ", counter, " at ", Date())
     counter = 0
     counterUpdate()
 }
 
 $(document).ready(function() {
+    counter = $(".counter-start").data("counter-start")
     counterUpdate()
     $(".counter-reset").click(counterReset)
     $(".counter-minus").click(counterDecrement)
