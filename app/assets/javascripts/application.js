@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require_tree .
 
-var counter = 1
+var counter = 0
 
 var counterUpdate = function() {
     $(".counter").text(counter)
@@ -43,11 +43,12 @@ var counterIncrement = function() {
 var counterReset = function() {
     console.log("reset", counter)
     counter = 0
+    counterUpdate()
 }
 
 $(document).ready(function() {
     counterUpdate()
-
+    $(".counter-reset").click(counterReset)
     $(".counter-minus").click(counterDecrement)
     $(".counter-plus").click(counterIncrement)
 })
