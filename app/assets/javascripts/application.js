@@ -16,24 +16,38 @@
 //= require turbolinks
 //= require_tree .
 
-var count = 1
+var counter = 1
+
+var counterUpdate = function() {
+    $(".counter").text(counter)
+    console.log("update")
+ }
 
 var counterDecrement = function() {
-    console.log("decrement", count)
-    count--
+    console.log(this)
+    console.log("decrement", counter)
+    counter--
+    counterUpdate()
 }
 
 var counterIncrement = function() {
-    console.log("increment", count)
-    count++
+    if (counter > 10) {
+        console.log("counter > 10")
+    }
+
+    console.log("increment", counter)
+    counter++
+    counterUpdate()
 }
 
 var counterReset = function() {
-    console.log("reset", count)
-    count = 0
+    console.log("reset", counter)
+    counter = 0
 }
 
 $(document).ready(function() {
+    counterUpdate()
+
     $(".counter-minus").click(counterDecrement)
     $(".counter-plus").click(counterIncrement)
 })
