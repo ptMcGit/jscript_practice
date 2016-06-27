@@ -18,9 +18,26 @@
 
 var counterLog = []
 
+window.onload = function() {
+    counterLog = JSON.parse( localStorage.getItem('counterLog') )
+}
+
+window.onbeforeunload = function() {
+    localStorage.setItem('counterLog', JSON.stringify(counterLog))
+}
+
 var logClear = function() {
     counterLog = []
 }
+
+var logSave = function() {
+    localStorage.setItem('counterLog', JSON.stringify(counterLog))
+}
+
+var logLoad = function() {
+    counterLog = localStorage['counterLog']
+}
+
 
 var counter = 0
 
